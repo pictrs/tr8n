@@ -111,7 +111,7 @@ module Tr8n
       # Do not allow redirects to external websites
       escaped_origin_host = Regexp.escape("#{request.protocol}#{request.host}")
       if(!params[:source_url].blank? && params[:source_url] =~ /^#{escaped_origin_host}/)
-        return redirect_to(params[:source_url]), :status=>301
+        return redirect_to(params[:source_url])
       end
       return redirect_to(request.env['HTTP_REFERER']) unless request.env['HTTP_REFERER'].blank?
       redirect_to_site_default_url
