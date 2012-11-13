@@ -728,6 +728,11 @@ class Tr8n::TranslationKey < ActiveRecord::Base
       results = results.where("(tr8n_translation_keys.label like ? or tr8n_translation_keys.description like ?)", "%#{params[:search]}%", "%#{params[:search]}%")
     end
 
+    unless params[:description_search].blank?
+      results = results.where("(tr8n_translation_keys.description like ?)", "%#{params[:description_search]}%")
+    end
+
+
     # for with and approved, allow user to specify the kinds
     if params[:phrase_type] == "with"
       results = results.where("tr8n_translation_keys.id in (select tr8n_translations.translation_key_id from tr8n_translations where tr8n_translations.language_id = ?)", Tr8n::Config.current_language.id)

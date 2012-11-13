@@ -11,8 +11,9 @@
 	        </button>
 			  </div>
 				
-	    	<%=text_field_tag(:search, params[:search], {:style => "width:90%;font-size:12px;height:20px"})%><br>
-				<div style="margin-top:10px; padding:3px; font-size:11px; color:#666; font-weight:bold;">
+                <%=tra('Label or Description')%> <%=text_field_tag(:search, params[:search], {:style => "width:80%;font-size:12px;height:20px"})%><br>
+		<%=tra('Only Description')%> <%=text_field_tag(:description_search, params[:description_search], {:style => "width:80%;font-size:12px;height:20px"})%><br>
+		<div style="margin-top:10px; padding:3px; font-size:11px; color:#666; font-weight:bold;">
 	          <%=tra("Search phrases", "Phrases search filter header")%>
 	          <%=select_tag(:phrase_type, tr8n_options_for_select(Tr8n::TranslationKey.filter_phrase_type_options, params[:phrase_type]), :onChange => "toggleFilterOptions()")%>
 	          <span id="extended_filter_options" style="<%='display:none' unless params[:phrase_type]=="with" %>">
