@@ -1,6 +1,6 @@
 <% if Tr8n::Config.enabled? and not params[:disable_tr8n_js] %>
 
-	<%= tr8n_splash_screen_tag %>
+	<%#= tr8n_splash_screen_tag %>
 
   <% if Tr8n::Config.enable_software_keyboard? %>
     <script> 
@@ -16,7 +16,7 @@
      initializeTr8n();
   </script>
 
-  <% if Tr8n::Config.enable_effects? %>
+  <% if Tr8n::Config.enable_effects? %> <% raise %>
     <%=javascript_include_tag(Tr8n::Config.effects_library_path) -%>
 	<% end %>
 	
