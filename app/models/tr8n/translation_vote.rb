@@ -40,7 +40,6 @@
 #++
 
 class Tr8n::TranslationVote < ActiveRecord::Base
-  set_table_name :tr8n_translation_votes
   
   attr_accessible :translation_id, :translator_id, :vote
   attr_accessible :translation, :translator

@@ -42,7 +42,6 @@
 #++
 
 class Tr8n::TranslationKeyComment < ActiveRecord::Base
-  set_table_name :tr8n_translation_key_comments
   
   attr_accessible :language_id, :translation_key_id, :translator_id, :message
   attr_accessible :language, :translator, :translation_key

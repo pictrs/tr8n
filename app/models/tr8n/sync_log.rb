@@ -41,7 +41,6 @@
 #++
 
 class Tr8n::SyncLog < ActiveRecord::Base
-  set_table_name :tr8n_sync_logs
 
   attr_accessible :started_at, :finished_at, :keys_sent, :translations_sent, :keys_received, :translations_received
 
