@@ -1,0 +1,66 @@
+//= require tr8n/ext/inflector.js
+//= require tr8n/ext/md5.js
+//= require tr8n/ext/shortcut.js
+//= require tr8n/ext/keyboard_1_49.js
+//= require tr8n/base.js
+//= require tr8n/utils.js
+//= require tr8n/effects.js
+//= require tr8n/ui/language_case_manager.js
+//= require tr8n/ui/language_selector.js
+//= require tr8n/ui/lightbox.js
+//= require tr8n/ui/translator.js
+//= require tr8n/proxy.js
+//= require tr8n/logger.js
+//= require tr8n/language.js
+//= require tr8n/translation_key.js
+//= require tr8n/tokens/token.js
+//= require tr8n/tokens/data_token.js
+//= require tr8n/tokens/transform_token.js
+//= require tr8n/tokens/decoration_token.js
+//= require tr8n/rules/language_rule.js
+//= require tr8n/rules/date_rule.js
+//= require tr8n/rules/gender_rule.js
+//= require tr8n/rules/numeric_rule.js
+//= require tr8n/rules/list_rule.js
+//= require tr8n/rules/gender_list_rule.js
+//= require tr8n/tml/label.js
+//= require tr8n/tml/token.js
+//= require tr8n/init.js
+
+
+// hier die init sachen rein, ggf. mit bedingungen usw.
+initializeTr8n();
+<%= Tr8n::Config.enable_google_suggestions? %>
+
+<% if Tr8n::Config.enabled? #and not params[:disable_tr8n_js] 
+  %>
+
+  <% if Tr8n::Config.enable_software_keyboard? %>
+    
+      VKI_default_layout = "<%=Tr8n::KeyboardMapping.current_1_49%>";
+      <%#=stylesheet_link_tag("tr8n/keyboard_1_49.css") -%>
+  <% end %>  
+
+  
+  <%# if Tr8n::Config.enable_client_sdk? and not opts[:disable_tr8n_client_sdk] %>
+    <%#= tr8n_client_sdk_tag(opts) %>
+    <%#= tr8n_translations_cache_tag(opts) %>
+  <%# end %>
+  
+  <% if Tr8n::Config.enable_google_suggestions? #and Tr8n::Config.current_user_is_translator? 
+    %>  
+      Tr8n.google_api_key = "<%=Tr8n::Config.google_api_key %>";
+    <% end %>
+
+  <% if Tr8n::Config.enable_keyboard_shortcuts? %>  
+       <% Tr8n::Config.default_shortcuts.each do |key, data| %>       
+          shortcut.add("<%=key%>", function() {
+            <%=data["script"]%>
+          });
+       <% end %>
+   
+  <% end %>  
+ 
+<% end %>
+
+

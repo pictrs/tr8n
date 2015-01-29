@@ -82,6 +82,7 @@ class Tr8n::Translator < ActiveRecord::Base
   end
 
   def cache_key
+    raise key.inspect
     self.class.cache_key(key)
   end
 
