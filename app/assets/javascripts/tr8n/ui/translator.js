@@ -37,7 +37,7 @@ Tr8n.Translator = function(options) {
 
   var event_type = Tr8n.Utils.isOpera() ? 'click' : 'contextmenu';
 
-  Tr8n.Utils.addEvent(document, event_type, function(e) {
+  var rightclick = function(e) {
     if (Tr8n.Utils.isOpera() && !e.ctrlKey) return;
 
     var translatable_node = Tr8n.Utils.findElement(e, ".tr8n_translatable");
@@ -57,7 +57,35 @@ Tr8n.Translator = function(options) {
 
     self.show(translatable_node);
     return false;
-  });
+  };
+
+  var leftclick = function(e) {
+    
+    if ($) // assume jquery is loaded
+    {
+      var $this = $(e.srcElement);
+      var key = $this.data('translation-key-id');
+      console.log(key);
+      var translatable_node = e.srcElement;
+      console.log(translatable_node);
+      
+      if (translatable_node == null || key == null) return;
+   
+      if (e.stop) e.stop();
+      if (e.preventDefault) e.preventDefault();
+      if (e.stopPropagation) e.stopPropagation();
+
+      self.show(translatable_node, key);
+    } 
+    else
+    { 
+      console.log('needs jquery');
+    }
+    return false;
+  };
+  
+  Tr8n.Utils.addEvent(document, event_type, rightclick);
+  Tr8n.Utils.addEvent(document, 'click', leftclick);
 }
 
 Tr8n.Translator.prototype = {
@@ -66,7 +94,7 @@ Tr8n.Translator.prototype = {
     Tr8n.Utils.showFlash();
   },
 
-  show: function(translatable_node) {
+  show: function(translatable_node, translation_key_id) {
     var self = this;
     if (tr8nLanguageSelector) tr8nLanguageSelector.hide();
     if (tr8nLightbox) tr8nLightbox.hide();
@@ -109,7 +137,7 @@ Tr8n.Translator.prototype = {
     window.scrollTo(target_position[0], scroll_height);
     this.container.style.left     = container_position.left;
     this.container.style.top      = container_position.top;
-    this.translation_key_id       = translatable_node.getAttribute('translation_key_id');
+    this.translation_key_id = translation_key_id || translatable_node.getAttribute('translation_key_id');
 
     window.setTimeout(function() {
       Tr8n.Utils.update('tr8n_translator', '/tr8n/language/translator', {
