@@ -63,11 +63,8 @@ Tr8n.Translator = function(options) {
     
     if ($) // assume jquery is loaded
     {
-      var $this = $(e.srcElement);
-      var key = $this.data('translation-key-id');
-      console.log(key);
-      var translatable_node = e.srcElement;
-      console.log(translatable_node);
+      var translatable_node = e.srcElement || e.target;
+      var key = $(translatable_node).data('translation-key-id');
       
       if (translatable_node == null || key == null) return;
    
