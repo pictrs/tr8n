@@ -43,7 +43,7 @@ module Tr8n
     end
   
     def self.enabled?
-      Tr8n::Config.enable_caching?
+      Tr8n::Config.enable_caching? && (Rails.env != 'development') # this should be bound to some configuration
     end
 
     def self.disabled?
