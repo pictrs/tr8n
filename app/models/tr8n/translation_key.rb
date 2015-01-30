@@ -720,7 +720,8 @@ class Tr8n::TranslationKey < ActiveRecord::Base
     results = self.where("tr8n_translation_keys.locale <> ? and (level is null or level <= ?)", Tr8n::Config.current_language.locale, Tr8n::Config.current_user_is_translator? ? Tr8n::Config.current_translator.level : 0)
     
     if Tr8n::Config.enable_caching?
-      results = results.where("verified_at is not null")
+      # this resulted in an empty list, when activating cache while phrases existed (?)
+      #results = results.where("verified_at is not null")
     end  
     
     unless params[:search].blank?
