@@ -8,7 +8,7 @@
     <% end %>
   </div>
 	
-  <div style="color:grey;font-size:20px;padding-bottom:10px;"><%=@translation_key.class.title%></div>
+  <div style="color:grey;font-size:20px;padding-bottom:10px;"><%= tr('Original Phrase in {language}','tr8n', :language=>@translation_key.language.present? ? @translation_key.language.native_name : 'unknown language') %></div>
   
   <div style="padding-top:5px;padding-bottom:10px;font-size:14px">
       <%=image_tag("tr8n/left_quote.png", :style=>"text-align:bottom;padding-bottom:5px;") %>
