@@ -61,7 +61,7 @@ Tr8n.Translator = function(options) {
 
   var leftclick = function(e) {
     
-    if ($) // assume jquery is loaded
+    if (typeof($) != 'undefined') // assume jquery is loaded
     {
       var translatable_node = e.srcElement || e.target;
       var key = $(translatable_node).data('translation-key-id');
