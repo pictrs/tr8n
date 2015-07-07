@@ -38,6 +38,5 @@
 #++
 
 class Tr8n::Glossary < ActiveRecord::Base
-  attr_accessible :keyword, :description
   self.table_name = 'tr8n_glossary'
 end

@@ -45,12 +45,8 @@ require File.join(File.dirname(__FILE__), 'extensions/action_controller_extensio
 module Tr8n
   class Railtie < ::Rails::Railtie #:nodoc:
     initializer 'tr8n' do |app|
-      ActiveSupport.on_load(:action_view) do
-        ::ActionView::Base.send :include, Tr8n::ActionViewExtension
-      end
-      ActiveSupport.on_load(:action_controller) do
-        include Tr8n::ActionControllerExtension
-      end      
+      ActiveSupport.on_load( :action_controller ){ include Tr8n::ActionControllerExtension }
+      ActiveSupport.on_load( :action_view ){ include Tr8n::ActionViewExtension::InstanceMethods }
     end
   end
 end

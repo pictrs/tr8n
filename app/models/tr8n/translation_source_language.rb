@@ -39,8 +39,6 @@
 
 class Tr8n::TranslationSourceLanguage < ActiveRecord::Base
 
-  attr_accessible :language_id, :translation_source_id
-  attr_accessible :translation_source, :language
 
   belongs_to  :translation_source,  :class_name => "Tr8n::TranslationSource"
   belongs_to  :language,  :class_name => "Tr8n::Language"

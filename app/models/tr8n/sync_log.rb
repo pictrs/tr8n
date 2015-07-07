@@ -42,7 +42,6 @@
 
 class Tr8n::SyncLog < ActiveRecord::Base
 
-  attr_accessible :started_at, :finished_at, :keys_sent, :translations_sent, :keys_received, :translations_received
 
   def self.sync(opts = {})
     sync_log = Tr8n::SyncLog.create(:started_at => Time.now, 

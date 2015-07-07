@@ -43,8 +43,6 @@
 
 class Tr8n::TranslatorReport < ActiveRecord::Base
 
-  attr_accessible :translator_id, :state, :object_id, :object_type, :reason, :comment
-  attr_accessible :translator, :object
 
   belongs_to :translator, :class_name => "Tr8n::Translator"   
   belongs_to :object, :polymorphic => true

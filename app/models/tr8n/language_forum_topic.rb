@@ -41,8 +41,6 @@
 
 class Tr8n::LanguageForumTopic < ActiveRecord::Base
 
-  attr_accessible :translator_id, :language_id, :topic
-  attr_accessible :language, :translator
   
   belongs_to :language, :class_name => "Tr8n::Language"    
   belongs_to :translator, :class_name => "Tr8n::Translator"    

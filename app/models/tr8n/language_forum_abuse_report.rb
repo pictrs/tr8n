@@ -43,8 +43,6 @@
 
 class Tr8n::LanguageForumAbuseReport < ActiveRecord::Base
 
-  attr_accessible :language_id, :translator_id, :language_forum_message_id, :reason
-  attr_accessible :language, :translator, :language_forum_message
 
   belongs_to :language,               :class_name => "Tr8n::Language"  
   belongs_to :translator,             :class_name => "Tr8n::Translator"   

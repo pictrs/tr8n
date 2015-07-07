@@ -40,8 +40,6 @@
 
 class Tr8n::TranslationDomain < ActiveRecord::Base
 
-  attr_accessible :name, :description, :source_count
-
   after_save      :clear_cache
   after_destroy   :clear_cache
   

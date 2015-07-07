@@ -44,8 +44,6 @@
 
 class Tr8n::LanguageCaseRule < ActiveRecord::Base
 
-  attr_accessible :language_case_id, :language_id, :translator_id, :definition, :position
-  attr_accessible :language, :language_case, :translator
   
   belongs_to :language_case,  :class_name => "Tr8n::LanguageCase"   
   belongs_to :language,       :class_name => "Tr8n::Language"   

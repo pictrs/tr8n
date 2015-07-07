@@ -42,8 +42,6 @@
 
 class Tr8n::LanguageRule < ActiveRecord::Base
 
-  attr_accessible :language_id, :translator_id, :definition
-  attr_accessible :language, :translator
 
   after_save      :clear_cache
   after_destroy   :clear_cache

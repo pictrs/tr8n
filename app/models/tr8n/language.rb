@@ -48,20 +48,18 @@
 
 class Tr8n::Language < ActiveRecord::Base
   
-  attr_accessible :locale, :english_name, :native_name, :enabled, :right_to_left, :completenss, :fallback_language_id, :curse_words, :featured_index, :google_key, :facebook_key
-  attr_accessible :fallback_language
-
   after_save      :update_cache
   after_destroy   :update_cache
 
   belongs_to :fallback_language,    :class_name => 'Tr8n::Language', :foreign_key => :fallback_language_id
   
-  has_many :language_rules,         :class_name => 'Tr8n::LanguageRule',        :dependent => :destroy, :order => "type asc"
-  has_many :language_cases,         :class_name => 'Tr8n::LanguageCase',        :dependent => :destroy, :order => "id asc"
-  has_many :language_users,         :class_name => 'Tr8n::LanguageUser',        :dependent => :destroy
-  has_many :translations,           :class_name => 'Tr8n::Translation',         :dependent => :destroy
-  has_many :translation_key_locks,  :class_name => 'Tr8n::TranslationKeyLock',  :dependent => :destroy
-  has_many :language_metrics,       :class_name => 'Tr8n::LanguageMetric'
+  has_many :language_rules,  -> { order("type asc")},   :dependent => :destroy 
+  has_many :language_cases,  -> { order("id asc")},     :dependent => :destroy
+  has_many :language_users,         :dependent => :destroy
+  has_many :translations,           :dependent => :destroy
+  has_many :translation_key_locks,  :dependent => :destroy
+  has_many :language_metrics       
+  has_one  :total_language_metric
   
   def self.cache_key(locale)
     "language_#{locale}"
@@ -216,13 +214,13 @@ class Tr8n::Language < ActiveRecord::Base
   
   def self.enabled_languages
     Tr8n::Cache.fetch("enabled_languages") do 
-      find(:all, :conditions => ["enabled = ?", true], :order => "english_name asc")
+      where(:enabled => true).order("english_name asc")
     end
   end
 
   def self.featured_languages
     Tr8n::Cache.fetch("featured_languages") do 
-      find(:all, :conditions => ["enabled = ? and featured_index is not null and featured_index > 0", true], :order => "featured_index desc")
+      where(:enabled => true).where('featured_index is not null and featured_index > 0').order("featured_index desc")
     end
   end
 
@@ -291,7 +289,7 @@ class Tr8n::Language < ActiveRecord::Base
 
   def total_metric
     @total_metric ||= begin
-      metric = Tr8n::TotalLanguageMetric.find(:first, :conditions => ["language_id = ?", self.id])
+      metric = total_language_metric # Tr8n::TotalLanguageMetric.where(:language_id => self.id]).first
       metric || Tr8n::TotalLanguageMetric.create(Tr8n::LanguageMetric.default_attributes.merge(:language_id => self.id))
     end
   end

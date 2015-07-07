@@ -39,8 +39,6 @@
 
 class Tr8n::TranslationSource < ActiveRecord::Base
 
-  attr_accessible :source, :translation_domain_id
-  attr_accessible :translation_domain
 
   after_destroy   :clear_cache
   

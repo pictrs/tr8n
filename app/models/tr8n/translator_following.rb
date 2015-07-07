@@ -41,8 +41,6 @@
 class Tr8n::TranslatorFollowing < ActiveRecord::Base
   self.table_name =  'tr8n_translator_following'
 
-  attr_accessible :translator_id, :object_id, :object_type
-  attr_accessible :translator, :object
 
   belongs_to :translator, :class_name => "Tr8n::Translator"   
   belongs_to :object, :polymorphic => true

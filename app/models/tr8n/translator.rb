@@ -58,13 +58,11 @@
 
 class Tr8n::Translator < ActiveRecord::Base
   
-  attr_accessible :user_id, :inline_mode, :blocked, :reported, :fallback_language_id, :rank, :name, :gender, :email, :password, :mugshot, :link, :locale, :level, :manager, :last_ip, :country_code, :remote_id
-  attr_accessible :user
 
   belongs_to :user, :class_name => Tr8n::Config.user_class_name, :foreign_key => :user_id
   
-  has_many  :translator_logs,               :class_name => "Tr8n::TranslatorLog",             :dependent => :destroy, :order => "created_at desc"
-  has_many  :translator_following,          :class_name => "Tr8n::TranslatorFollowing",       :dependent => :destroy, :order => "created_at desc"
+  has_many  :translator_logs,               :class_name => "Tr8n::TranslatorLog",             :dependent => :destroy #rails4todo, :order => "created_at desc"
+  has_many  :translator_following,          :class_name => "Tr8n::TranslatorFollowing",       :dependent => :destroy #rails4todo, :order => "created_at desc"
   has_many  :translator_metrics,            :class_name => "Tr8n::TranslatorMetric",          :dependent => :destroy
   has_many  :translations,                  :class_name => "Tr8n::Translation",               :dependent => :destroy
   has_many  :translation_votes,             :class_name => "Tr8n::TranslationVote",           :dependent => :destroy

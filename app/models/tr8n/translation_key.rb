@@ -49,7 +49,6 @@ require 'digest/md5'
 
 class Tr8n::TranslationKey < ActiveRecord::Base
 
-  attr_accessible :key, :label, :description, :verified_at, :translation_count, :admin, :locale, :level, :synced_at
 
   after_save      :clear_cache
   after_destroy   :clear_cache
@@ -59,7 +58,7 @@ class Tr8n::TranslationKey < ActiveRecord::Base
   has_many :translation_key_sources,  :class_name => "Tr8n::TranslationKeySource",  :dependent => :destroy
   has_many :translation_sources,      :class_name => "Tr8n::TranslationSource",     :through => :translation_key_sources
   has_many :translation_domains,      :class_name => "Tr8n::TranslationDomain",     :through => :translation_sources
-  has_many :translation_key_comments, :class_name => "Tr8n::TranslationKeyComment", :dependent => :destroy, :order => "created_at desc"
+  has_many :translation_key_comments, -> {order("created_at desc")}, :class_name => "Tr8n::TranslationKeyComment", :dependent => :destroy
   
   alias :locks        :translation_key_locks
   alias :key_sources  :translation_key_sources

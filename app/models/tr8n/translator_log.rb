@@ -45,8 +45,6 @@
 
 class Tr8n::TranslatorLog < ActiveRecord::Base
   
-  attr_accessible :translator_id, :user_id, :action, :action_level, :reason, :reference
-  attr_accessible :translator, :user
 
   belongs_to :translator, :class_name => "Tr8n::Translator"
   belongs_to :user,       :class_name => Tr8n::Config.user_class_name, :foreign_key => :user_id

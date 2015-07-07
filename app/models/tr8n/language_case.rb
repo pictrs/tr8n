@@ -46,15 +46,12 @@
 
 class Tr8n::LanguageCase < ActiveRecord::Base
   
-  attr_accessible :language_id, :translator_id, :keyword, :latin_name, :native_name, :description, :application
-  attr_accessible :language, :translator
-
   after_save :clear_cache
   after_destroy :clear_cache
 
-  belongs_to :language, :class_name => "Tr8n::Language"   
-  belongs_to :translator, :class_name => "Tr8n::Translator"   
-  has_many   :language_case_rules, :class_name => "Tr8n::LanguageCaseRule", :order => 'position asc', :dependent => :destroy
+  belongs_to :language   
+  belongs_to :translator   
+  has_many   :language_case_rules, -> { order('position asc')}, :dependent => :destroy
   
   serialize :definition
   

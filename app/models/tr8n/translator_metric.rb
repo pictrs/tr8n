@@ -47,8 +47,6 @@
 
 class Tr8n::TranslatorMetric < ActiveRecord::Base
     
-  attr_accessible :translator_id, :language_id, :total_translations, :total_votes, :positive_votes, :negative_votes, :accepted_translations, :rejected_translations
-  attr_accessible :translator, :language
 
   belongs_to :translator, :class_name => "Tr8n::Translator"
   belongs_to :language, :class_name => "Tr8n::Language"
