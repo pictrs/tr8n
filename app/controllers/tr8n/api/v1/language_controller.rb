@@ -64,7 +64,7 @@ class Tr8n::Api::V1::LanguageController < Tr8n::Api::V1::BaseController
       
       translations = []
       Tr8n::TranslationKey.find(:all, :conditions => conditions).each_with_index do |tkey, index|
-        trn = tkey.translate(language, {}, {:api => true, :api => :cache})
+        trn = tkey.translate(language, {}, {:api => true})
         translations << trn 
       end
       
