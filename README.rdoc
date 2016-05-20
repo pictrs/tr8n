@@ -1,5 +1,8 @@
 = Welcome to Tr8n Translation Engine
 
+*Notice:* Since berk/tr8n is maintained no longer, this is the attempt to let tr8n survival in her natural habitat. Don't expect too much documentation.
+
+
 Tr8n Translation Engine is a Rails Engine Plugin/Gem that provides a framework for crowd-sourced translations of your Rails application. 
 The power of the engine comes from its simple and friendly user interface that allows site users as well as professional translators to rapidly 
 translate the site into hundreds of languages. 
@@ -23,10 +26,6 @@ You can visit their web sites and see how it is being used. If your company is u
 
 
 = Documentation
-
-Please look through the following slides to get familiar with Tr8n concepts and features:
-
-http://wiki.tr8n.org/slides
 
 Once you are done, you can try out Tr8n features yourself by following the deployement instructions from one of the examples:
 
@@ -107,42 +106,6 @@ Open your browser and point to:
   http://localhost:3000
 
 
-= Tr8n Screenshots
-
-Below are a few screenshots of what Tr8n looks like:
-
-== Tr8n Language Selector (in a lightbox)
-
-http://img853.imageshack.us/img853/6784/tr8n1.png
-
-== Tr8n Translation Interface
-
-http://img140.imageshack.us/img140/1272/tr8n2.png
-
-== Tr8n Translation Votes Interface
-
-http://img854.imageshack.us/img854/1341/tr8n3.png
-
-== Tr8n Language Selector (as a dropdown)
-
-http://img233.imageshack.us/img233/3973/tr8n4.png
-
-== Tr8n Translation Interface (with a keyboard)
-
-http://img717.imageshack.us/img717/9392/tr8n6.png
-
-== Tr8n Translation Tools
-
-http://img824.imageshack.us/img824/2263/tr8n8.png
-
-== Tr8n Translator Dashboard
-
-http://img337.imageshack.us/img337/3180/tr8n5.png
-
-== Tr8n Translation Admin Tools
-
-http://img225.imageshack.us/img225/3599/tr8n7.png
-
 
 = External Links
 
@@ -162,16 +125,6 @@ http://tcrn.ch/f1VLnj
 Quora Discussion - What is the best way to deal with internationlization of text on a large social site?
 
 http://bit.ly/hUU6R9 
-
-
-LinkedIn Discussion 
-
-http://www.linkedin.com/groups/Internationalizing-your-application-using-Tr8n-4090552?gid=4090552
-
-
-RailsCasts - If you would like to see a RailsCasts episode on how to get Tr8n configured and running, please visit the RailsCasts suggestion page and vote it up. Thank you!
-  
-http://bit.ly/gz7lFw 
 
 
 Tr8n Discussion on Hacker News
