@@ -27,10 +27,12 @@ module Tr8n
     def self.cache_store_params
       [Tr8n::Config.cache_store].flatten
     end
-    
+
     def self.cache
       return nil unless enabled?
-      
+
+      return Rails.cache if (cache_store_params.blank? || !cache_store_params.any?) && defined?(Rails) && Rails.cache.present?
+
       @cache ||= begin
         if Tr8n::Config.cache_adapter == 'ActiveSupport::Cache'
           store_params = cache_store_params
@@ -41,9 +43,13 @@ module Tr8n
         end
       end
     end
-  
+
     def self.enabled?
-      Tr8n::Config.enable_caching? && (Rails.env != 'development') # this should be bound to some configuration
+      if Tr8n::Config.enable_caching?.is_a?(Hash)
+        Tr8n::Config.enable_caching?[Rails.env.to_s]
+      else
+        Tr8n::Config.enable_caching?
+      end
     end
 
     def self.disabled?
@@ -55,7 +61,7 @@ module Tr8n
     end
     
     def self.versioned_key(key)
-      "#{version}_#{key}"
+      "tr8n_#{version}_#{key}"
     end
 
     def self.memory_store?

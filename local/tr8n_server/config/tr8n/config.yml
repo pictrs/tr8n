@@ -84,7 +84,7 @@ defaults:
   # Tr8n best run with caching enabled 
   # You can configure cache adapter and store parameters by providing the 
   # the name of your class implementation and the store settings. 
-  #
+  # Rails.cache is used by default, but you can define a different.
   # For example: 
   #  
   # adapter:  ActiveSupport::Cache
@@ -105,10 +105,14 @@ defaults:
   #
   #############################################################################
   caching:
-    enabled:                  false
-    adapter:                  ActiveSupport::Cache
-    store:                    'memory_store'
+    enabled:                  
+      develeopment: true
+      production:   true
+      test:         false
     version:                  1 # you can change the version to invalidate the cache
+    # Rails.cache is used by default, but you can define a different:
+    # adapter:                  ActiveSupport::Cache
+    # store:                    'memory_store'
 
   #############################################################################
   # By default, Tr8n will use its own logger. If you set it to false,  
