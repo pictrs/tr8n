@@ -327,8 +327,7 @@ class Tr8n::Translator < ActiveRecord::Base
   def level
     return Tr8n::Config.admin_level if admin?
     return super if remote?
-    return 0 if super.nil?
-    super
+    super || 0
   end
 
   def title
