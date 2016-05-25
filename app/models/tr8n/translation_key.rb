@@ -504,8 +504,7 @@ class Tr8n::TranslationKey < ActiveRecord::Base
   end
   
   def level
-    return 0 if super.nil?
-    super
+    attributes['level'] || 0
   end
   
   def can_be_translated?(translator = nil)
