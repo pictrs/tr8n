@@ -132,7 +132,7 @@ class Tr8n::TranslationKey < ActiveRecord::Base
   # verification is used to cleanup unused keys
   def self.verify_key(tkey, options)
     return unless Tr8n::Config.enable_key_verification?
-    existing_key.update_attributes(:verified_at => Time.now)
+    tkey.update_attributes(:verified_at => Time.now)
 
   end
 
