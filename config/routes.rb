@@ -27,7 +27,8 @@ Tr8n::Engine.routes.draw do
     get "#{ctrl}(/:action)", :controller => "#{ctrl}"
   end
   post "language/switch", :controller => "language",:action=>'switch'
-  post "translations/translate"=>'translations#translate'
+  post "translations/translate" => 'translations#translate'
+  post "translations/update"    => 'translations#update'
   
   [:chart, :clientsdk, :forum, :glossary, :language, :translation, 
    :translation_key, :translator, :domain, :metrics].each do |ctrl|

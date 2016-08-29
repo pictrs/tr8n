@@ -130,9 +130,11 @@ module Tr8n
     end
   
     def sanitize_label(label)
-  #  do not double escape    
-  #  CGI::escapeHTML(label.strip)
-     ERB::Util.html_escape(label.strip)
+      if true #allow_html
+        Loofah.scrub_fragment(label.strip, :prune).to_s
+      else
+        ERB::Util.html_escape(label.strip)
+      end
     end
 
     # handle disabled state for tr8n

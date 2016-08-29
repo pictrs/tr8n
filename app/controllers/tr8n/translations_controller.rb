@@ -24,7 +24,7 @@
 class Tr8n::TranslationsController < Tr8n::BaseController
 
   before_filter :validate_current_translator
-  before_filter :validate_default_language, :except => [:translate, :permutate, :vote]
+  before_filter :validate_default_language, :except => [:translate, :update, :permutate, :vote]
   
   # for ssl access to the translator - using ssl_requirement plugin  
   ssl_allowed :translate  if respond_to?(:ssl_allowed)
