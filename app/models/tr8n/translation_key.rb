@@ -568,7 +568,7 @@ class Tr8n::TranslationKey < ActiveRecord::Base
   end
         
   def update_translation_count!
-    update_attributes(:translation_count => Tr8n::Translation.count(:conditions => ["translation_key_id = ?", self.id]))
+    update_attributes(:translation_count => Tr8n::Translation.where(translation_key_id: id).count)
   end
 
   def source_map
