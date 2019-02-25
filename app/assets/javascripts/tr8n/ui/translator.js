@@ -201,7 +201,52 @@ Tr8n.Translator.prototype = {
     });
   },
 
+  validateTranslation: function() {
+    var newVal = Tr8n.element('tr8n_translator_translation_label').value,
+        errors = [],
+        each   = function(regex, callback) {
+          (TR8N_ORIGINAL_LABEL.match(regex) || []).forEach(callback);
+        };
+
+    // HTML-Tags
+    each(/<\/?[a-z]+>/g, function(tag) {
+      if (newVal.indexOf(tag) == -1) {
+        errors.push('HTML-Tag "' + tag + '" nicht gefunden.');
+      }
+    });
+
+    // Token
+    each(/{[^}|]+}/g, function(token) {
+      if (newVal.indexOf(token) == -1) {
+        errors.push('Variable "' + token + '" nicht gefunden.');
+      }
+    });
+
+    // Decoration
+    var regexToken    = '([^\\]]+)',
+        regexRest     = ': [^\\]]+';
+        regexComplete = '\\[' + regexToken + regexRest + '\\]';
+    each(new RegExp(regexComplete, 'g'), function(token) {
+      var match = token.match(new RegExp(regexComplete)), // liefert auch named group, solange g-Flag fehlt
+          regx  = new RegExp('\\[' + match[1] + regexRest + '\\]');
+      if (!regx.test(newVal)) {
+        errors.push('Variable "' + token + '" nicht gefunden.');
+      }
+    });
+
+    if (!errors.length) {
+      return true;
+    }
+
+    var msg = 'Folgende Fehler sind aufgetreten:\n' + errors.join('\n');
+    alert(msg);
+    return false;
+  },
+
   submitTranslation: function() {
+    if (!this.validateTranslation()) {
+      return;
+    }
     Tr8n.Effects.hide('tr8n_translator_translation_container');
     Tr8n.Effects.hide('tr8n_translator_buttons_container');
     Tr8n.Effects.show('tr8n_translator_spinner');
