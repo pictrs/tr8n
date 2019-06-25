@@ -19,5 +19,5 @@
 <%=tr8n_spinner_tag("tr8n_translator_spinner", "Translating...")%>
 
 <script>
-  TR8N_ORIGINAL_LABEL = '<%= @translation_key.label.gsub("'", "\\\\'").html_safe %>';
+  TR8N_ORIGINAL_LABEL = '<%= @translation_key.label.gsub("'", "\\\\'").squish.html_safe %>';
 </script>
