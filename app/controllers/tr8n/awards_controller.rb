@@ -24,18 +24,18 @@
 module Tr8n
   class AwardsController < Tr8n::BaseController
 
-    before_filter :validate_current_translator
-  
+    before_action :validate_current_translator
+
     def index
       if params[:mode] == "all"
         @translator_metrics = Tr8n::TranslatorMetric.where("language_id is null").order("total_translations desc, total_votes desc").limit(25)
       else
         @translator_metrics = Tr8n::TranslatorMetric.where("language_id = ?", tr8n_current_language.id).order("total_translations desc, total_votes desc").limit(25)
       end
-    
+
       @leaders = @translator_metrics[0..2]
       @runners = (@translator_metrics.size > 3) ? @translator_metrics[3..-1] : []
     end
-    
+
   end
 end

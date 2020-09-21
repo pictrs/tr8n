@@ -24,11 +24,11 @@
 module Tr8n
   class DashboardController < Tr8n::BaseController
 
-    before_filter :validate_current_translator
-  
+    before_action :validate_current_translator
+
     def index
-      
+
     end
-    
+
   end
 end
