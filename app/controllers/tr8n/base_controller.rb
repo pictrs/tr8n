@@ -35,7 +35,7 @@ module Tr8n
     end
 
     if Tr8n::Config.before_filters.any?
-      before_filter *Tr8n::Config.before_filters
+      before_action *Tr8n::Config.before_filters
     end
 
     if Tr8n::Config.after_filters.any?

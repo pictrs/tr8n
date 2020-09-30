@@ -23,7 +23,7 @@
 
 class Tr8n::ForumController < Tr8n::BaseController
 
-  before_filter :validate_current_translator
+  before_action :validate_current_translator
   
   def index
     @topics = Tr8n::LanguageForumTopic.where(:language_id => tr8n_current_language.id).order("created_at desc").page(page).per(per_page)

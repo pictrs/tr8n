@@ -1,5 +1,5 @@
 class Admin::BaseController < ApplicationController
-  before_filter :verify_admin_user
+  before_action :verify_admin_user
 
   layout 'admin'
 

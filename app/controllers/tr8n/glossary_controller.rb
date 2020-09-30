@@ -23,7 +23,7 @@
 
 class Tr8n::GlossaryController < Tr8n::BaseController
 
-  before_filter :validate_current_translator
+  before_action :validate_current_translator
   
   def index
     @terms = Tr8n::Glossary.order("keyword asc")

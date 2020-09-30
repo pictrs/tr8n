@@ -24,8 +24,8 @@
 module Tr8n
   class LanguageCasesController < Tr8n::BaseController
 
-    before_filter :validate_current_translator
-    before_filter :validate_language_management, :only => [:index]
+    before_action :validate_current_translator
+    before_action :validate_language_management, :only => [:index]
     
     # used by a client app
     def index

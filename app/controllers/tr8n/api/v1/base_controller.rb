@@ -23,7 +23,7 @@
 
 class Tr8n::Api::V1::BaseController < ApplicationController
 
-  before_filter :check_api_enabled
+  before_action :check_api_enabled
 
   if Tr8n::Config.api_skip_before_filters.any?
     skip_before_filter *Tr8n::Config.api_skip_before_filters
